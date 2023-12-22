@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        android:id="@+id/home"/>
+
+    <item android:title="Message"
+        android:id="@+id/message"
+        android:icon="@drawable/baseline_message_24"/>
+
+    <item android:title="Mail"
+        android:id="@+id/txtEmail"
+        android:icon="@drawable/baseline_mail_outline_24"
+
+        />
+
+
+</menu>
