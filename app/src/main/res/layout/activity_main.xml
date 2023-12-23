@@ -10,9 +10,9 @@
     tools:context=".MainActivity">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+           android:layout_height="wrap_content">
 
 
         <androidx.appcompat.widget.Toolbar
@@ -22,11 +22,25 @@
             android:background="@android:color/darker_gray"
             android:title="Navigation"
             android:titleTextColor="#BC1F1F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:titleTextColor="@color/black">
+
+
+            <ImageView
+                android:id="@+id/dots"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="397dp"
+                android:padding="8dp"
+                android:src="@drawable/dots" />
 
         </androidx.appcompat.widget.Toolbar>
 
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

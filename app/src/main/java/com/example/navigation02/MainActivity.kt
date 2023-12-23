@@ -64,13 +64,15 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
+                R.id.txtShare -> {
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    startActivity(Intent.createChooser(shareIntent, "Share via"))
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My App Subject")
+                }
             }
+            drawable.closeDrawers()
             true
-
-
         }
-
     }
 }
-
-

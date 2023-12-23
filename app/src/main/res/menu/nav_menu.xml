@@ -18,4 +18,13 @@
         />
 
 
+    <item android:title="Share"
+        android:id="@+id/txtShare"
+        android:icon="@drawable/baseline_share_24"
+
+        />
+
+
+
+
 </menu>
