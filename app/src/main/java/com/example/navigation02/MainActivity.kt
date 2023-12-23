@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         navigationview.setNavigationItemSelectedListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.home -> {
-                    Toast.makeText(this, "This is home button", Toast.LENGTH_SHORT).show()
+                    intent =Intent(this@MainActivity, HomePage::class.java)
+                    startActivity(intent)
                 }
 
                 R.id.message -> {
@@ -79,6 +80,12 @@ class MainActivity : AppCompatActivity() {
                 shareIntent.type = "text/plain"
                 startActivity(Intent.createChooser(shareIntent, "Share via"))
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My App Subject")
+            }
+
+
+            R.id.home -> {
+                intent =Intent(this@MainActivity, HomePage::class.java)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
