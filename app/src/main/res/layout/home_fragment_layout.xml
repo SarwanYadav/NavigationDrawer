@@ -71,7 +71,6 @@
                 app:cardCornerRadius="20dp">
 
                 <RelativeLayout
-                    android:id="@+id/lkmkjm"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -304,7 +303,7 @@
 
 
 
-    </LinearLayout>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

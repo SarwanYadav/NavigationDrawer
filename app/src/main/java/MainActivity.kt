@@ -1,16 +1,25 @@
 package com.example.navigation02
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import com.example.navigation02.Fragments.HomeFragment
+import com.example.navigation02.Fragments.JobsFragment
+import com.example.navigation02.Fragments.MyNetwork_Fragment
+import com.example.navigation02.Fragments.NotificationFragment
+import com.example.navigation02.Fragments.PostFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -18,17 +27,76 @@ class MainActivity : AppCompatActivity() {
     lateinit var navigationview: NavigationView
     lateinit var toolbar: Toolbar
     lateinit var drawable: DrawerLayout
+    lateinit var container: FrameLayout
+    lateinit var bottomNav: BottomNavigationView
 
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var actionBarToggle: ActionBarDrawerToggle
+        // find view ID
 
+        var actionBarToggle: ActionBarDrawerToggle
         navigationview = findViewById(R.id.navigationview)
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         drawable = findViewById(R.id.drawable)
+
+        // bottom navigation id findview
+
+        container = findViewById(R.id.container)
+        bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
+
+        supportFragmentManager.beginTransaction().replace(R.id.container,HomeFragment()).commit()
+
+
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.home -> {
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, HomeFragment()).commit()
+
+
+                }
+
+                R.id.my_network -> {
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, MyNetwork_Fragment()).commit()
+
+                }
+
+
+                R.id.post -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.container,PostFragment()).commit()
+                }
+
+                R.id.notification -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.container,NotificationFragment()).commit()
+                }
+
+
+               R.id.jobs -> {
+                   supportFragmentManager.beginTransaction().replace(R.id.container,JobsFragment()).commit()
+
+               }
+
+
+
+            }
+            true
+        }
+
+
+
+
+
+
+        //  Navigation Baar option
 
         actionBarToggle =
             ActionBarDrawerToggle(this, drawable, toolbar, R.string.open, R.string.close)
@@ -39,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         navigationview.setNavigationItemSelectedListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.home -> {
-                    intent =Intent(this@MainActivity, HomePage::class.java)
+                    intent = Intent(this@MainActivity, HomePage::class.java)
                     startActivity(intent)
                 }
 
@@ -49,6 +117,8 @@ class MainActivity : AppCompatActivity() {
                     intent.type = "vnd.android-dir/mms-sms"
                     startActivity(intent)
                 }
+
+
 
                 R.id.txtEmail -> {
                     val intent = Intent(Intent.ACTION_SENDTO)
@@ -68,10 +138,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
+
+    //  Add option menu baar
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.option_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -84,10 +160,14 @@ class MainActivity : AppCompatActivity() {
 
 
             R.id.home -> {
-                intent =Intent(this@MainActivity, HomePage::class.java)
+                intent = Intent(this@MainActivity, HomePage::class.java)
                 startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+
+
 }
