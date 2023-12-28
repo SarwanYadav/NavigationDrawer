@@ -13,16 +13,13 @@
 
     <item android:title="Mail"
         android:id="@+id/txtEmail"
-        android:icon="@drawable/baseline_mail_outline_24"
+        android:icon="@drawable/baseline_mail_outline_24" />
 
-        />
 
 
     <item android:title="Share"
         android:id="@+id/txtShare"
-        android:icon="@drawable/share"
-
-        />
+        android:icon="@drawable/share"/>
 
 
 

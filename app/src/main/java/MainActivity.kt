@@ -8,12 +8,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import com.example.navigation02.Fragments.HomeFragment
 import com.example.navigation02.Fragments.JobsFragment
 import com.example.navigation02.Fragments.MyNetwork_Fragment
@@ -47,9 +45,9 @@ class MainActivity : AppCompatActivity() {
         // bottom navigation id findview
 
         container = findViewById(R.id.container)
-        bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
-        supportFragmentManager.beginTransaction().replace(R.id.container,HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container, HomeFragment()).commit()
 
 
         bottomNav.setOnNavigationItemSelectedListener { item ->
@@ -72,28 +70,26 @@ class MainActivity : AppCompatActivity() {
 
 
                 R.id.post -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.container,PostFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, PostFragment()).commit()
                 }
 
                 R.id.notification -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.container,NotificationFragment()).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, NotificationFragment()).commit()
                 }
 
 
-               R.id.jobs -> {
-                   supportFragmentManager.beginTransaction().replace(R.id.container,JobsFragment()).commit()
+                R.id.jobs -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, JobsFragment()).commit()
 
-               }
-
+                }
 
 
             }
             true
         }
-
-
-
-
 
 
         //  Navigation Baar option
@@ -119,7 +115,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
 
-
                 R.id.txtEmail -> {
                     val intent = Intent(Intent.ACTION_SENDTO)
                         .setData(Uri.parse("mailto:"))
@@ -137,8 +132,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-
-
 
 
     //  Add option menu baar
@@ -163,11 +156,16 @@ class MainActivity : AppCompatActivity() {
                 intent = Intent(this@MainActivity, HomePage::class.java)
                 startActivity(intent)
             }
+
+            R.id.logout -> {
+                intent = Intent(this@MainActivity, LoginPage::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 
 
 }
