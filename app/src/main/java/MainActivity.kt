@@ -11,6 +11,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.navigation02.Fragments.HomeFragment
 import com.example.navigation02.Fragments.JobsFragment
@@ -20,11 +21,12 @@ import com.example.navigation02.Fragments.PostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
+
 class MainActivity : AppCompatActivity() {
 
     lateinit var navigationview: NavigationView
     lateinit var toolbar: Toolbar
-    lateinit var drawable: DrawerLayout
+    lateinit var drawer: DrawerLayout
     lateinit var container: FrameLayout
     lateinit var bottomNav: BottomNavigationView
 
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         navigationview = findViewById(R.id.navigationview)
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
-        drawable = findViewById(R.id.drawable)
+        drawer = findViewById(R.id.drawable)
 
         // bottom navigation id findview
 
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
         supportFragmentManager.beginTransaction().replace(R.id.container, HomeFragment()).commit()
+
 
 
         bottomNav.setOnNavigationItemSelectedListener { item ->
@@ -92,11 +95,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
         //  Navigation Baar option
 
         actionBarToggle =
-            ActionBarDrawerToggle(this, drawable, toolbar, R.string.open, R.string.close)
-        drawable.addDrawerListener(actionBarToggle)
+            ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close)
+        drawer.addDrawerListener(actionBarToggle)
 
         actionBarToggle.syncState()
 
@@ -116,8 +121,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 R.id.txtEmail -> {
-                    val intent = Intent(Intent.ACTION_SENDTO)
-                        .setData(Uri.parse("mailto:"))
+                    val intent = Intent(Intent.ACTION_SENDTO).setData(Uri.parse("mailto:"))
                     startActivity(intent)
                 }
 
@@ -128,10 +132,11 @@ class MainActivity : AppCompatActivity() {
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My App Subject")
                 }
             }
-            drawable.closeDrawers()
+            drawer.closeDrawers()
             true
         }
     }
+
 
 
     //  Add option menu baar
@@ -141,6 +146,21 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+
+    // back press your app close navition drawer
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
+        var seletedItemId = bottomNav.selectedItemId
+
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
+        } else if (R.id.home != seletedItemId) {
+            bottomNav.selectedItemId = R.id.home
+        } else {
+            finish()
+        }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
