@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         drawer = findViewById(R.id.drawable)
 
+
         // bottom navigation id findview
 
         container = findViewById(R.id.container)
@@ -53,8 +54,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
+
 
                 R.id.home -> {
 

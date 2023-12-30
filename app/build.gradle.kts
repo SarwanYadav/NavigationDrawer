@@ -46,6 +46,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
+// lottie animation
+    implementation ("com.airbnb.android:lottie:3.4.0")
 
 
 
